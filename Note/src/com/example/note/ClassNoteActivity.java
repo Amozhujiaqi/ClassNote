@@ -28,8 +28,8 @@ public class ClassNoteActivity extends ListActivity{
     	  super.onCreate(savedInstanceState);
     	  this.setTitle("课堂讨论笔记");
           showlist();
-  		  setContentView(R.layout.note);
-  		  findViews();  
+  		  //setContentView(R.layout.note);
+  		 // findViews();  
       }
       private void findViews(){
     	  addtopic = (Button) findViewById(R.id.addtopic);
@@ -51,15 +51,15 @@ public class ClassNoteActivity extends ListActivity{
   			  }
   		  });
       }
-      
       private void showlist(){//显示笔记列表
-    	  final TopicDatabaseHelper topic = new TopicDatabaseHelper(this);
-    	  Cursor c = topic.query("topic");
-    	  String[] from = {"id","title","note","conclusion"};
-    	  int[] to = {R.id.id,R.id.title,R.id.note,R.id.conclusion};
-    	  SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-    			  R.layout.note,c,from,to);
-    	  ListView listview = getListView();//列表视图
-    	  listview.setAdapter(adapter);//添加适配器
-      }
+       	  final TopicDatabaseHelper topicdb=new TopicDatabaseHelper(this);
+       	  Cursor c = topicdb.query("topic");
+       	  String[] from = {"_id","title","note","conclusion"};
+       	  int[] to = {R.id.id,R.id.title,R.id.note1,R.id.conclusion};
+       	  SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+       			  R.layout.note,c,from,to);
+       	  ListView listview = getListView();//列表视图
+       	  listview.setAdapter(adapter);//添加适配器
+         }
+
 }
