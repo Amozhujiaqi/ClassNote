@@ -1,5 +1,9 @@
 package com.example.note;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -14,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.note.R;
 import com.note.service.TopicDatabaseHelper;
 import com.note.service.UserService;
 import com.example.note.R;
@@ -27,8 +30,8 @@ public class ClassNoteActivity extends ListActivity{
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
     	  this.setTitle("课堂讨论笔记");
+    	  setContentView(R.layout.note);
           showlist();
-  		  //setContentView(R.layout.note);
   		 // findViews();  
       }
       private void findViews(){
@@ -56,8 +59,9 @@ public class ClassNoteActivity extends ListActivity{
        	  Cursor c = topicdb.query("topic");
        	  String[] from = {"_id","title","note","conclusion"};
        	  int[] to = {R.id.id,R.id.title,R.id.note1,R.id.conclusion};
+       	  //List<Map<String, String>> listItemsList=new ArrayList<Map<String,String>>();
        	  SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-       			  R.layout.note,c,from,to);
+       			  R.layout.topiclist,c,from,to);
        	  ListView listview = getListView();//列表视图
        	  listview.setAdapter(adapter);//添加适配器
          }
